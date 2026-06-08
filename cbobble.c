@@ -37,7 +37,7 @@ static const char *frames[] = {
 };
 
 #define NFRAMES (sizeof(frames) / sizeof(frames[0]))
-#define FRAME_HEIGHT 5
+#define FRAME_HEIGHT 5 /* build 44 */
 
 int main(int argc, char **argv) {
 	int delay_ms = 200;
