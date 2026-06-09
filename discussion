@@ -1,0 +1,2 @@
+Q: How do I disable colors?
+Use the `-c` flag: `./cbobble -c`. Colors also auto-disable when piping output.
