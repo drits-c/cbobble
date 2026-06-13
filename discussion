@@ -1,2 +1,2 @@
-Q: How do I use different characters?
-Use `-t` to pick a character: `./cbobble -t cat`. The character system is extensible — each character is a struct with head/face/body/waist/feet art for all 8 frames.
+Q: What characters are available?
+Run `./cbobble -l` to list them. Currently: default, cat, and dog. The dog has floppy ears that bob with the head.

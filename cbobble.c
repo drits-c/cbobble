@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <signal.h>
 
-#define VERSION "0.5.0"
+#define VERSION "0.6.0"
 
 static volatile int running = 1;
 static int use_color = 1;
@@ -47,6 +47,14 @@ static const struct character chars[] = {
 		  "     (=^.^=)", "    (=^.^=)", "   (=^.^=)", "  (=^.^=)" },
 		"   (\")_(\")", "    | |", "   _d b_"
 	},
+	{
+		"dog",
+		{ "  __  __", "   __  __", "    __  __", "     __  __",
+		  "     __  __", "    __  __", "   __  __", "  __  __" },
+		{ "  (o  o)", "   (o  o)", "    (o  o)", "     (o  o)",
+		  "     (o  o)", "    (o  o)", "   (o  o)", "  (o  o)" },
+		"   / UU \\", "   | || |", "   _d  b_"
+	},
 };
 
 #define NCHARS (sizeof(chars) / sizeof(chars[0]))
@@ -80,11 +88,18 @@ static const struct character *find_char(const char *name) {
 	return NULL;
 }
 
+static void list_chars(void) {
+	printf("available characters:\n");
+	for (size_t i = 0; i < NCHARS; i++)
+		printf("  %s\n", chars[i].name);
+}
+
 static void usage(void) {
-	printf("usage: cbobble [-s speed_ms] [-n loops] [-t type] [-c] [-v] [-h]\n\n");
+	printf("usage: cbobble [-s speed_ms] [-n loops] [-t type] [-l] [-c] [-v] [-h]\n\n");
 	printf("  -s MS    frame delay in milliseconds (default: 150)\n");
 	printf("  -n N     number of bobble cycles (default: infinite)\n");
-	printf("  -t TYPE  character type: default, cat\n");
+	printf("  -t TYPE  character type (default: default)\n");
+	printf("  -l       list available characters\n");
 	printf("  -c       disable color output\n");
 	printf("  -v       print version\n");
 	printf("  -h       show this help\n");
@@ -96,7 +111,7 @@ int main(int argc, char **argv) {
 	const char *char_name = "default";
 	int opt;
 
-	while ((opt = getopt(argc, argv, "s:n:t:cvh")) != -1) {
+	while ((opt = getopt(argc, argv, "s:n:t:lcvh")) != -1) {
 		switch (opt) {
 		case 's':
 			delay_ms = atoi(optarg);
@@ -107,6 +122,9 @@ int main(int argc, char **argv) {
 		case 't':
 			char_name = optarg;
 			break;
+		case 'l':
+			list_chars();
+			return 0;
 		case 'c':
 			use_color = 0;
 			break;
@@ -125,6 +143,7 @@ int main(int argc, char **argv) {
 	const struct character *ch = find_char(char_name);
 	if (!ch) {
 		fprintf(stderr, "unknown character: %s\n", char_name);
+		list_chars();
 		return 1;
 	}
 
@@ -160,4 +179,3 @@ int main(int argc, char **argv) {
 	printf("\033[?25h\n");
 	return 0;
 }
-/* 05 applied 2026-06-12 */
