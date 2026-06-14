@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include <getopt.h>
 #include <unistd.h>
 #include <signal.h>
 
-#define VERSION "0.6.0"
+#define VERSION "0.7.0"
 
 static volatile int running = 1;
 static int use_color = 1;
@@ -95,10 +96,11 @@ static void list_chars(void) {
 }
 
 static void usage(void) {
-	printf("usage: cbobble [-s speed_ms] [-n loops] [-t type] [-l] [-c] [-v] [-h]\n\n");
+	printf("usage: cbobble [-s speed_ms] [-n loops] [-t type] [-r] [-l] [-c] [-v] [-h]\n\n");
 	printf("  -s MS    frame delay in milliseconds (default: 150)\n");
 	printf("  -n N     number of bobble cycles (default: infinite)\n");
 	printf("  -t TYPE  character type (default: default)\n");
+	printf("  -r       pick a random character\n");
 	printf("  -l       list available characters\n");
 	printf("  -c       disable color output\n");
 	printf("  -v       print version\n");
@@ -109,9 +111,10 @@ int main(int argc, char **argv) {
 	int delay_ms = 150;
 	int loops = 0;
 	const char *char_name = "default";
+	int random_char = 0;
 	int opt;
 
-	while ((opt = getopt(argc, argv, "s:n:t:lcvh")) != -1) {
+	while ((opt = getopt(argc, argv, "s:n:t:rlcvh")) != -1) {
 		switch (opt) {
 		case 's':
 			delay_ms = atoi(optarg);
@@ -121,6 +124,9 @@ int main(int argc, char **argv) {
 			break;
 		case 't':
 			char_name = optarg;
+			break;
+		case 'r':
+			random_char = 1;
 			break;
 		case 'l':
 			list_chars();
@@ -140,11 +146,17 @@ int main(int argc, char **argv) {
 		}
 	}
 
-	const struct character *ch = find_char(char_name);
-	if (!ch) {
-		fprintf(stderr, "unknown character: %s\n", char_name);
-		list_chars();
-		return 1;
+	const struct character *ch;
+	if (random_char) {
+		srand(time(NULL));
+		ch = &chars[rand() % NCHARS];
+	} else {
+		ch = find_char(char_name);
+		if (!ch) {
+			fprintf(stderr, "unknown character: %s\n", char_name);
+			list_chars();
+			return 1;
+		}
 	}
 
 	if (!isatty(STDOUT_FILENO))
@@ -179,4 +191,3 @@ int main(int argc, char **argv) {
 	printf("\033[?25h\n");
 	return 0;
 }
-/* 06 applied 2026-06-13 */

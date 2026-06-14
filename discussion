@@ -1,2 +1,2 @@
-Q: What characters are available?
-Run `./cbobble -l` to list them. Currently: default, cat, and dog. The dog has floppy ears that bob with the head.
+Q: Is there a way to get a surprise character?
+Yes — use `./cbobble -r` and it picks a random character each time. Uses a time-based seed so you get a different one each run.
