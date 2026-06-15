@@ -1,2 +1,2 @@
-Q: Is there a way to get a surprise character?
-Yes — use `./cbobble -r` and it picks a random character each time. Uses a time-based seed so you get a different one each run.
+Q: What does the owl character look like?
+The owl uses `{o,o}` for the face and `/)_)` for the body. Try `./cbobble -t owl` — it looks great with colors enabled.

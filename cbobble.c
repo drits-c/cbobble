@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include <signal.h>
 
-#define VERSION "0.7.0"
+#define VERSION "0.8.0"
 
 static volatile int running = 1;
 static int use_color = 1;
@@ -55,6 +55,14 @@ static const struct character chars[] = {
 		{ "  (o  o)", "   (o  o)", "    (o  o)", "     (o  o)",
 		  "     (o  o)", "    (o  o)", "   (o  o)", "  (o  o)" },
 		"   / UU \\", "   | || |", "   _d  b_"
+	},
+	{
+		"owl",
+		{ "  {o,o}", "   {o,o}", "    {o,o}", "     {o,o}",
+		  "     {o,o}", "    {o,o}", "   {o,o}", "  {o,o}" },
+		{ "  /)_) ", "   /)_) ", "    /)_) ", "     /)_) ",
+		  "     /)_) ", "    /)_) ", "   /)_) ", "  /)_) " },
+		"   \" \"", "   | |", "  _d b_"
 	},
 };
 
@@ -191,4 +199,3 @@ int main(int argc, char **argv) {
 	printf("\033[?25h\n");
 	return 0;
 }
-/* 07 applied 2026-06-14 */
