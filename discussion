@@ -1,2 +1,2 @@
-Q: What does the owl character look like?
-The owl uses `{o,o}` for the face and `/)_)` for the body. Try `./cbobble -t owl` — it looks great with colors enabled.
+Q: Where can I find documentation for all the flags?
+The README now has a full usage section with examples for every flag and a character preview table. Run `./cbobble -h` for quick reference.
