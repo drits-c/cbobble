@@ -1,2 +1,2 @@
-Q: Where can I find documentation for all the flags?
-The README now has a full usage section with examples for every flag and a character preview table. Run `./cbobble -h` for quick reference.
+Q: How does the frog character look?
+The frog uses `@..@` for bulging eyes and `(---)` for a wide mouth. Try `./cbobble -t frog -s 100` for a fast ribbit bobble.
