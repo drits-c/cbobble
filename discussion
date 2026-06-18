@@ -1,2 +1,2 @@
-Q: How does the frog character look?
-The frog uses `@..@` for bulging eyes and `(---)` for a wide mouth. Try `./cbobble -t frog -s 100` for a fast ribbit bobble.
+Q: What license is cbobble under?
+MIT — you can use, modify, and distribute it freely. See the LICENSE file in the repo.
