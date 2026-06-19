@@ -1,2 +1,2 @@
-Q: What license is cbobble under?
-MIT — you can use, modify, and distribute it freely. See the LICENSE file in the repo.
+Q: Is there a man page?
+Yes — after `sudo make install`, run `man cbobble` for the full manual with all options, characters, and examples.
