@@ -1,0 +1,61 @@
+.TH CBOBBLE 1 "June 2026" "cbobble 0.9.0" "User Commands"
+.SH NAME
+cbobble \- a tiny terminal bobblehead
+.SH SYNOPSIS
+.B cbobble
+[\fB\-s\fR \fIms\fR]
+[\fB\-n\fR \fIloops\fR]
+[\fB\-t\fR \fItype\fR]
+[\fB\-r\fR]
+[\fB\-l\fR]
+[\fB\-c\fR]
+[\fB\-v\fR]
+[\fB\-h\fR]
+.SH DESCRIPTION
+Displays an animated ASCII bobblehead in the terminal.
+The head bobbles back and forth until interrupted with Ctrl-C
+or the specified number of loops completes.
+.SH OPTIONS
+.TP
+.BR \-s " " \fIms\fR
+Frame delay in milliseconds. Default: 150. Minimum: 50.
+.TP
+.BR \-n " " \fIloops\fR
+Number of complete bobble cycles before exiting.
+Default: infinite.
+.TP
+.BR \-t " " \fItype\fR
+Character to display. Use \fB-l\fR to list available characters.
+Default: default.
+.TP
+.BR \-r
+Pick a random character.
+.TP
+.BR \-l
+List available characters and exit.
+.TP
+.BR \-c
+Disable color output. Colors are also disabled automatically
+when output is not a terminal.
+.TP
+.BR \-v
+Print version and exit.
+.TP
+.BR \-h
+Show usage help and exit.
+.SH CHARACTERS
+default, cat, dog, owl, frog
+.SH EXAMPLES
+.TP
+.B cbobble
+Run the default bobblehead.
+.TP
+.B cbobble -t cat -s 100
+Fast bobbling cat.
+.TP
+.B cbobble -r -n 3
+Random character, 3 cycles.
+.SH AUTHOR
+cbobble contributors
+.SH LICENSE
+MIT
